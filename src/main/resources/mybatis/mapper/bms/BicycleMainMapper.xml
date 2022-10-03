@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bms.mapper.bms.BmsMapper">
+
+    <select id="getAllBms3" resultType="com.bms.pojo.BicycleMainProperties" parameterType="java.lang.String">
+        select BicycleId,BatteryId, BicycleName from ebick.bicid
+
+        <if test="BicycleId != null and BicycleId !='' ">
+            and BicycleId LIKE CONCAT('%',#{BicycleId},'%')
+        </if>
+        <if test="BatteryId != null and BatteryId !='' ">
+            and dateTime LIKE CONCAT('%',#{BatteryId},'%')
+        </if>
+    </select>
+
+    <select id="getRfidCard" resultType="com.bms.pojo.BicycleMainProperties" parameterType="java.lang.String">
+        select BicycleId,BatteryId, BicycleName from ebick.bicid
+        where 	BicycleName="Bick1"
+
+    </select>
+
+
+
+
+
+
+
+
+
+</mapper>

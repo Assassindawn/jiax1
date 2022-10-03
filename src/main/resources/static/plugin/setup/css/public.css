@@ -1,0 +1,21 @@
+@charset "utf-8"; 
+/*公用样式*/
+html,body{height: 100%; width: 100%;}
+*{margin: 0; padding: 0;}
+body, button, input, select, textarea {font-family:\5FAE\8F6F\96C5\9ED1,sans-serif;font-size:14px;outline:none; color:#666666;}
+ul,ol,li {list-style: none; margin-bottom: 0;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;margin-top: 0; margin-bottom: 0; font-size: 14px;}
+img{border: none;vertical-align: middle;}
+.fl {float: left;}
+.fr {float: right;}
+/*清除浮动*/
+.clearfix:after {visibility:hidden;display:block;font-size: 0;content: " ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+em,i{ font-style:normal; font-weight:normal;}
+a,a:hover,a:link{text-decoration: none;}
+/*美化字体*/
+@font-face {
+	font-family:'digifaw';src: url('../fonts/digifaw.ttf');font-weight: normal;font-style: normal;
+}
+.arrow_right{position: relative;}
+.arrow_right:after{content: " ";display: inline-block;height: 6px;width: 6px;border-width: 2px 2px 0 0;border-color: #a0a0a0;border-style: solid;-webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0); position: absolute;top: 50%; margin-top: -3px; right:10px;}

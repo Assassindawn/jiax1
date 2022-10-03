@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <title>BMS主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!--  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">-->
+
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+  <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+  .left-jkcx{
+    float: left;
+  }
+  .right-jkcx{
+    float: right;
+  }
+
+  #hot{
+    float: left;
+  }
+  #cold{
+    float: left;
+  }
+  #battery{
+    float: left;
+  }
+  #beep{
+    float: left;
+  }
+
+</style>
+</head>
+<body>
+
+<div th:insert="~{commons/commons::header}"></div>
+
+
+<div class="zyl_lofo_main">
+  <div class="row">
+    <div th:replace="~{commons/commons::nav(active='first')}"></div>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h3" style="color:#19191c;font-family: 'Times New Roman'" >二机控制界面</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+        </div>
+      </div>
+
+      <div class="">
+        <h2 class="h2" style="color:#101010;font-family:'Times New Roman'" >统计图</h2>
+        <div id="main" style="width: 320px;height:280px;"></div>
+      </div>
+      <div class="monitoringQuery">
+        <div class="left-jkcx">
+          <h2 class="h2" style="color:#101010;font-family:'Times New Roman'" >电量仪表盘</h2>
+          <div id="main2" style="width: 320px;height:280px;"></div>
+        </div>
+        <div class="left-jkcx" >
+          <h2 class="h2" style="color:#101010;font-family:'Times New Roman'" >温度仪表盘</h2>
+          <div id="main4" style="width: 320px;height:280px;"></div>
+        </div>
+      </div>
+      <br>
+      <h2 class="h2" style="color:#101010; width:148px; line-height:55px;text-align:left;font-family:'Times New Roman'" >电机控制开关</h2>
+      <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+          <div class="layui-col-sm12 layui-col-md12 zyl_mar_01">
+            <div class="layui-nav-side"><button  id="hot" type="button" class="btn btn-outline-secondary" >前进开关</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+          <div class="layui-col-sm12 layui-col-md12 zyl_mar_01">
+            <div class="layui-nav-side"><button id="cold" type="button" class="btn btn-outline-secondary">后退开关</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+          <div class="layui-col-sm12 layui-col-md12 zyl_mar_01">
+            <div class="layui-nav-side"><button id="battery" type="button" class="btn btn-outline-secondary">电源开关</button></div>
+          </div>
+        </div>
+      </div> <div class="layui-fluid">
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 zyl_mar_01">
+          <div class="layui-nav-side"><button id="beep" type="button" class="btn btn-outline-secondary">蜂鸣器开关</button></div>
+        </div>
+      </div>
+      <div id="main3" style="width: 340px;height:300px;"> <button class="btn btn-outline-secondary" id="start">查看数据</button>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+    </main>
+  </div>
+</div>
+
+
+
+<!--<script th:src="@{/js/bootstrap.bundle.min.js}"></script>-->
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
+</script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+<script th:src="@{/js/jquery.js}"></script>
+
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.3.3/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sakana-widget@2.2.1/lib/sakana.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sakana-widget/2.2.1/sakana.min.js"></script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+<script th:src="@{/js/echarts.js}"></script>
+
+
+<script
+        async
+        onload="initSakanaWidget()"
+        src="https://cdn.jsdelivr.net/npm/sakana-widget@2.2.1/lib/sakana.min.js"
+></script>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+
+<script>
+
+
+
+
+
+
+  const startBtn = document.getElementById('start')
+  const stopBtn = document.getElementById('stop')
+
+  // 轮询在这
+  function myInterval() {
+    return {
+      start: () => {},
+      stop: () => {}
+    }
+  }
+
+  // 轮询管理器
+  const intervalManager = myInterval(main)
+
+  // 轮询的方法
+  let count = 0
+  function main() {
+
+
+    var option = {
+      title: {
+        text: '二机',
+        fontSize:'1'
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['electricQuantity', 'Temperature']
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {}
+        }
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: []
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+
+        {
+          name:"electricQuantity",
+          data: [],
+          type: 'line',
+
+        },
+        {
+          name:"Temperature",
+          data: [],
+          type: 'line',
+
+        }
+
+      ]
+    };
+
+
+    var option3 = {
+      series: [
+        {
+          type: 'gauge',
+          center: ['50%', '60%'],
+          startAngle: 200,
+          endAngle: -20,
+          min: 0,
+          max: 60,
+          splitNumber: 12,
+          itemStyle: {
+            color:
+                    '#37a2da'
+
+          },
+          progress: {
+            show: true,
+            width: 30
+          },
+          pointer: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              width: 30
+            }
+          },
+          axisTick: {
+            distance: -45,
+            splitNumber: 5,
+            lineStyle: {
+              width: 2,
+              color: '#999'
+            }
+          },
+          splitLine: {
+            distance: -52,
+            length: 14,
+            lineStyle: {
+              width: 3,
+              color: '#999'
+            }
+          },
+          axisLabel: {
+            distance: -20,
+            color: '#999',
+            fontSize: 20
+          },
+          anchor: {
+            show: false
+          },
+          title: {
+            show: false
+          },
+          detail: {
+            valueAnimation: true,
+            width: '60%',
+            lineHeight: 30,
+            borderRadius: 8,
+            offsetCenter: [0, '-15%'],
+            fontSize: 40,
+            fontWeight: 'bolder',
+            formatter: '{value} c',
+            color: 'auto'
+          },
+          data: [
+            {
+              value: 20
+            }
+          ]
+        },
+        {
+          type: 'gauge',
+          center: ['50%', '60%'],
+          startAngle: 200,
+          endAngle: -20,
+          min: 0,
+          max: 60,
+          itemStyle: {
+            color:[
+              '#37a2da'
+
+            ]
+          },
+          progress: {
+            show: true,
+            width: 8
+          },
+          pointer: {
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          detail: {
+            show: false
+          },
+          data: [
+            {
+
+            }
+          ]
+        }
+      ]
+    };
+    var option2 = {
+      series: [
+        {
+          type: 'gauge',
+          axisLine: {
+            lineStyle: {
+              width: 26,
+              color: [
+                [0.3,  '#fd666d'],
+                [0.7, '#37a2da'],
+                [1,   '#67e0e3']
+              ]
+            }
+          },
+          pointer: {
+            itemStyle: {
+              color: 'auto'
+            }
+          },
+          axisTick: {
+            distance: -30,
+            length: 8,
+            lineStyle: {
+              color: '#fff',
+              width: 2
+            }
+          },
+          splitLine: {
+            distance: -30,
+            length: 18,
+            lineStyle: {
+              color: '#fff',
+              width: 4
+            }
+          },
+          axisLabel: {
+            color: 'auto',
+            distance: 40,
+            fontSize: 20
+          },
+          detail: {
+            valueAnimation: false,
+            formatter: '{value} %',
+            color: 'auto'
+          },
+          data: [
+            {
+
+            }
+          ]
+        }
+      ]
+    };
+    setInterval(function () {
+      const random = +(Math.random() * 60).toFixed(2);
+      myChart.setOption({
+        series: [
+          {
+            data: [
+              {
+                value: random
+              }
+            ]
+          },
+          {
+            data: [
+              {
+                value: random
+              }
+            ]
+          }
+        ]
+      });
+    }, 2000000);
+
+    var chartDom1 = document.getElementById('main2');
+    var myChart1 = echarts.init(chartDom1);
+
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+
+    var chartDom2 = document.getElementById('main4');
+    var myChart2 = echarts.init(chartDom2);
+
+    fetch("/web/Bms/toSelectBms1").then(response =>response.json()).then(res=>{console.log(res)
+              const date= res.map(v=>v.dateTime);
+
+
+
+        option.xAxis.data=date
+              const electricQuantity= res.map(v=>v.electricQuantity);
+              const humidity= res.map(v=>v.humidity);
+              const Temperature= res.map(v=>v.temperature);
+              option.series[1].data=Temperature
+              option.series[0].data=electricQuantity
+
+              myChart.setOption(option);
+
+
+
+
+            }
+    )
+
+    fetch("/web/Bms/toSelectLast1").then(response =>response.json()).then(res=>{console.log(res)
+
+
+              const electricQuantity =res.map(v=>v.electricQuantity);
+              option2.series[0].data=electricQuantity;
+              myChart1.setOption(option2);
+
+            }
+    )
+
+    fetch("/web/Bms/toSelectLast1").then(response =>response.json()).then(res=>{console.log(res)
+
+
+              const temperature =res.map(v=>v.temperature);
+              option3.series[0].data=temperature;
+              myChart2.setOption(option3);
+
+            }
+    )
+
+
+  }
+
+  startBtn.addEventListener('click',intervalManager.start)
+  stopBtn.addEventListener('click', intervalManager.stop)
+
+  function myInterval(callback, interval = 2000) {
+    let timerId
+    const loop = async () => {
+      callback()
+      return (timer = setTimeout(loop, interval))
+    }
+    return {
+      start: () => {
+        loop()
+      },
+      stop: () => {
+        console.log('停止执行')
+        clearTimeout(timerId)
+      }
+    }
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
+</script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+<script th:src="@{/js/jquery.js}"></script>
+
+
+
+
+
+
+<script>
+
+  $("#hot").click(function () {
+    $.ajax({
+      url: "/web/Mqtt/getHot",
+      dataType: "json",
+      cache: false,//禁止缓存
+      async: false,//同步提交
+    });
+  });
+  $("#cold").click(function () {
+    $.ajax({
+      url: "/web/Mqtt/getCold",
+      dataType: "json",
+      cache: false,//禁止缓存
+      async: false,//同步提交
+    });
+  });
+  $("#battery").click(function () {
+    $.ajax({
+      url: "/web/Mqtt/getBattery",
+      dataType: "json",
+      cache: false,//禁止缓存
+      async: false,//同步提交
+    });
+  });
+  $("#beep").click(function () {
+    $.ajax({
+      url: "/web/Mqtt/getBeep",
+      dataType: "json",
+      cache: false,//禁止缓存
+      async: false,//同步提交
+    });
+  });
+
+
+
+</script>
+
+</body>
+</html>

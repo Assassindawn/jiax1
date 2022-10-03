@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+
+
+<script type="text/javascript">
+    //获取当前工程路径放在最前面，public.html在有所有面页之前
+    //CSS JS中获取当前路径直接使用_contextPath
+	var _contextPath = "${request.contextPath}";
+</script>
+<link rel="stylesheet" th:href="@{/plugin/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/Font-Awesome-4.5.0/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/ionicons-2.0.1/css/ionicons.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/SweetAlert2/css/sweetalert2.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-table/dist/bootstrap-table.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-select/css/bootstrap-select.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/zTree_v3/css/metroStyle/metroStyle.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-datepicker/css/bootstrap-datepicker.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/select2/dist/css/select2.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-fileinput/css/fileinput.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/style.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/all.css}">
+<link rel="stylesheet" th:href="@{/plugin/jQuery-Validation-Engine/css/validationEngine.jquery.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/jqgrid/css/ui.jqgrid.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/common.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/index.css}">
+
+<script th:src="@{/plugin/jQuery/jquery-2.2.3.min.js}"></script>
+
+<script th:src="@{/plugin/jQuery/jquery.fillform.js}"></script>
+<script th:src="@{/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/plugin/json/jquery.json.min.js}"></script>
+<script th:src="@{/plugin/zTree_v3/js/jquery.ztree.all.min.js}"></script>
+<script th:src="@{/plugin/zTree_v3/js/dropDownTree-1.0.js}"></script>
+<script th:src="@{/plugin/SweetAlert2/js/sweetalert2.js}"></script>
+<script th:src="@{/plugin/SweetAlert2/js/promise-0.1.1.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-table/dist/bootstrap-table.js}"></script>
+<script th:src="@{/plugin/bootstrap-table/dist/bootstrap-table-zh-CN.js}"></script>
+<script th:src="@{/plugin/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-datepicker/js/bootstrap-datepicker.zh-CN.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script th:src="@{/plugin/select2/dist/js/select2.min.js}"></script>
+<script th:src="@{/plugin/select2/dist/js/zh-CN.js}"></script>
+<script th:src="@{/plugin/bootstrap-select/js/bootstrap-select.js}"></script>
+<script th:src="@{/plugin/bootstrap-fileinput/js/fileinput.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-fileinput/js/zh.js}"></script>
+<script th:src="@{/plugin/Multipage/js/Multipage.min.js}" ></script>
+<script th:src="@{/plugin/setup/js/lib.js}"></script>
+<script th:src="@{/plugin/jQuery-Validation-Engine/js/jquery.validationEngine.min.js}"></script>
+<script th:src="@{/plugin/jQuery-Validation-Engine/js/jquery.validationEngine-zh_CN.js}"></script>
+<script th:src="@{/plugin/jqgrid/i18n/grid.locale-cn.js}"></script>
+<script th:src="@{/plugin/jqgrid/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/plugin/loading/PerfectLoad.js}" ></script>
+<script th:src="@{/js/jquery.validate.min.js}" ></script>
+<script th:src="@{/js/messages_zh.js}" ></script>
+<!--<script th:src="@{/js/bootstrap-treeview.min.js}" ></script>-->
+<script th:src="@{/js/ajaxfileupload.js}" ></script>
+<script th:src="@{/js/echarts.min.js}"></script>

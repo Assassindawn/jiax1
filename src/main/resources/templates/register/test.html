@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+
+<!-- 课程班级 -->
+<template>
+    <view>
+        <view class="wrap">
+            <view class="swiper-box" v-if="dataList.length">
+                <!-- 第一页 -->
+                <view class="swiper-item">
+                    <scroll-view scroll-y style="height: 100%;width: 100%;">
+                        <view class="page-box">
+                            <view class="order" v-for="(item, index) in dataList" :key="res.id">
+                                <view class="top">
+                                    <view class="left">
+                                        <uni-icons type="shop-filled" size="20" color="#007BFF"></uni-icons>
+                                        <uni-text class="cuIcon-titles text-blue">{{item.good_info}}</uni-text>
+                                    </view>
+                                    <view class="usePlace">
+                                        <view class="text-blue">{{item.usePlace}}</view>
+                                        <uni-icons type="paperplane" size="20" color="#47d995"></uni-icons>
+                                    </view>
+                                </view>
+                                <view class="center">
+                                    <view class="useTiem">
+                                        <span>租用时间：</span>
+                                        {{item.useTime}}
+                                    </view>
+                                    <!-- 归还地点 -->
+                                    <view class="finishplace_box">
+                                        <view class="finishplace" v-if="item.finishplace">{{item.finishplace}}</view>
+                                        <view class="using text-blue" v-else>
+                                            租借中
+                                        </view>
+                                        <uni-icons type="navigate-filled" size="24" color="#d985d1"
+                                                   v-if="item.finishplace"></uni-icons>
+                                        <uni-icons type="spinner-cycle" size="24" color="red" v-else></uni-icons>
+                                    </view>
+
+                                </view>
+                                <view class="bottom">
+                                    <view>
+                                        <span class="end_time" v-if="item.endTime">归还时间：</span>
+                                        <text class="text-blue text-shadow end_time">{{item.endTime}}</text>
+                                    </view>
+                                    <view class="btnBox">
+                                        <view class="evaluate btn" :class="[item.status=='租用中'?'red':'green']">
+                                            {{item.status}}
+                                        </view>
+                                    </view>
+                                </view>
+                                <view class="bottom">
+                                    <view>
+                                        <span class="end_time listId">订单编号：</span>
+                                        <text class="text-blue text-shadow end_time ">{{item.number}}</text>
+                                    </view>
+                                    <view class="usingTime">
+                                        <span class="end_time">使用时长：</span>
+                                        <text class="text-blue text-shadow end_time">{{item.total}}</text>
+                                    </view>
+                                </view>
+                                <!-- <view class="bottom" v-else>
+                                    <view class="btnBox guihan">
+                                        <view @click="goClass" class="evaluate btn red">归还设备</view>
+                                    </view>
+                                </view> -->
+                            </view>
+                            <!-- <u-loadmore :status="loadStatus[0]" bgColor="#f2f2f2"></u-loadmore> -->
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                // goods_id:'001',time:2020-2-05-01 22:00:00,info:'拐杖008',usePlace:"湖南信息学院",useTime:1h,finishplace:'湖南信息学院',status:'loding||finishi'
+
+            }
+        },
+        onLoad() {
+            console.log(dataList, "dataList");
+        },
+        props: ['dataList'],
+        methods: {
+
+            // 页面数据
+
+        }
+    }
+</script>
+
+
+<style lang="scss" scoped>
+    .order {
+        width: 710rpx;
+        background-color: #ffffff;
+        margin: 20rpx auto;
+        border-radius: 20rpx;
+        box-sizing: border-box;
+        padding: 20rpx;
+        font-size: 28rpx;
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+
+    .left {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 500;
+
+    .text-blue {
+        color: #555555;
+    }
+    }
+
+
+    // width: 200rpx;
+    // height: 40rpx;
+    // line-height: 40rpx;
+    font-size: 12px;
+    // display: flex;
+
+
+    // color: red;
+    // .progressBox {
+       // 	width: 150rpx;
+       // 	float: right;
+       // }
+
+    }
+
+    .usePlace {
+        display: flex;
+    }
+
+    .finishplace_box {
+        display: flex;
+
+    .using {
+        color: crimson;
+    }
+    }
+
+
+    .center {
+        font-size: 12px;
+    }
+
+    .item {
+        display: flex;
+        margin: 20rpx 0 0;
+
+    .left {
+        margin-right: 20rpx;
+
+    image {
+        width: 260rpx;
+        height: 190rpx;
+        border-radius: 10rpx;
+    }
+    }
+
+    .content {
+    .title {
+        font-size: 28rpx;
+        line-height: 40rpx;
+    }
+
+    .type {
+        margin: 6rpx 0;
+        font-size: 24rpx;
+        color: red;
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .delivery-time {
+        color: #0081ff;
+        font-size: 24rpx;
+    }
+    }
+
+    .right {
+        display: flex;
+    // margin-left: 10rpx;
+    // padding-top: 20rpx;
+    // text-align: right;
+
+    .decimal {
+        font-size: 24rpx;
+        margin-top: 4rpx;
+    }
+
+    .number {
+        color: red;
+        font-size: 24rpx;
+    }
+    }
+    }
+
+    .total {
+        margin-top: 20rpx;
+        text-align: right;
+        font-size: 24rpx;
+
+    .total-price {
+        font-size: 32rpx;
+    }
+    }
+
+    .bottom,
+    .center {
+        line-height: 60rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    .end_time {
+        font-size: 12px;
+    }
+
+    .usingTime {
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+        width: 230rpx;
+    }
+
+    .listId {
+        color: #d90000;
+        font-weight: bold;
+    }
+
+    .btnBox {
+        width: 200rpx;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+
+    .btn {
+        line-height: 52rpx;
+        width: 140rpx;
+        border-radius: 12rpx;
+        margin-left: 50rpx;
+        font-size: 26rpx;
+        text-align: center;
+    // color: red;
+    }
+    }
+    }
+    }
+
+    .guihan {
+        position: relative !important;
+        left: 525rpx;
+    }
+
+    .red {
+        color: red;
+        border: 2rpx solid red;
+    }
+
+    .green {
+        color: #1cbbb4;
+    // background-color: greenyellow;
+        border: 2rpx solid #1cbbb4;
+    }
+
+    .centre {
+        text-align: center;
+        margin: 200rpx auto;
+        font-size: 32rpx;
+
+    image {
+        width: 300rpx;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    .tips {
+        font-size: 24rpx;
+        color: #999999;
+        margin-top: 20rpx;
+    }
+
+    .btn {
+        margin: 80rpx auto;
+        width: 200rpx;
+        border-radius: 32rpx;
+        line-height: 64rpx;
+        color: #ffffff;
+        font-size: 24rpx;
+        background: linear-gradient(270deg, #1cbbb4 0%, #0081ff 100%);
+    }
+    }
+
+    // .wrap {
+       // 	display: flex;
+       // 	flex-direction: column;
+       // 	// height: calc(100vh - var(--window-top));
+       // 	height: 100vh;
+       // 	width: 100%;
+       // }
+    .swiper-box {
+        flex: 1;
+    }
+
+    .swiper-item {
+        height: 100%;
+    }
+</style>

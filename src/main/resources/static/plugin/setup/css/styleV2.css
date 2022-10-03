@@ -1,0 +1,12 @@
+.tc-bg{
+	background: linear-gradient(to bottom,#223349 0,#151c29 100%);
+}
+
+.tc-top{
+	background: 0;
+}
+
+table.tb-table2 td {
+	font-size: 16px;
+	border: 1px solid #495d6a;
+}

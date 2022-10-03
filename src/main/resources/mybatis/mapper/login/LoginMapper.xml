@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bms.mapper.login.LoginMapper">
+
+
+
+    <select id="queryAlluser" resultType="com.bms.pojo.register" parameterType="java.lang.String">
+        select uuid,version,password,username, (CASE serialnumber  WHEN 1 THEN '管理员' WHEN 0 THEN '普通用户' END ) AS uerstype from ebick.user
+        where 1=1
+        <if test="username != null and username !='' ">
+            and username LIKE CONCAT('%',#{username},'%')
+        </if>
+    </select>
+
+    <select id="queryuuid" resultType="java.lang.String" parameterType="java.lang.String">
+        select uuid from ebick.user
+        where 1=1
+        <if test="username != null and username !='' ">
+            and username =#{username}
+        </if>
+        <if test="password != null and password !='' ">
+            and password =#{password}
+        </if>
+    </select>
+
+    <select id="queryusername" resultType="java.lang.String" parameterType="java.lang.String">
+        select username from ebick.user
+        where 1=1
+        <if test="username != null and username !='' ">
+            and username =#{username}
+        </if>
+    </select>
+
+    <update id="updateUser" parameterType="java.lang.String" >
+        update ebick.user
+        set version  = version+1
+        where uuid = #{uuid,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+        DELETE FROM ebick.user WHERE uuid = #{uuid,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertUser" parameterType="com.bms.pojo.register">
+        insert into ebick.user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="uuid != null" >
+                uuid,
+            </if>
+            <if test="username != null" >
+                username,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="version != null" >
+                version,
+            </if>
+            <if test="Serialnumber != null" >
+                Serialnumber,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="uuid != null" >
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null" >
+                #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="Serialnumber != null" >
+                #{Serialnumber,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

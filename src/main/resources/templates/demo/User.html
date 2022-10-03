@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <title>BMS主页</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!--  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">-->
+  <link rel="stylesheet" href="layui/css/layui.css" th:href="@{/layui/css/layui.css}" media="all"/>
+  <link rel="stylesheet" href="css/login.css" th:href="@{/css/login.css}" media="all"/>
+  <style>
+    /* 覆盖原框架样式 */
+    .layui-elem-quote{background-color: inherit!important;}
+    .layui-input, .layui-select, .layui-textarea{background-color: inherit; padding-left: 30px;}
+  </style>
+
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+  <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+
+</head>
+<body>
+
+<div th:insert="~{commons/commons::header}"></div>
+Photorecognition
+<div class="container-fluid">
+  <div class="row">
+    <div th:replace="~{commons/commons::nav(active='first')}"></div>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h3" style="color:#19191c;font-family: 'Times New Roman'" >用户数据</h2>
+        <div class="btn-toolbar mb-2 mb-md-0">
+        </div>
+      </div>
+
+      <section class="content">
+        <!-- 查询条件部分 -->
+        <form method="post" id="headForm">
+          <table id="querytable" border="0" cellspacing="0" cellpadding="0" class="table">
+            <tr>
+              <td width="100px" style="text-align: left;min-width: 82px;">
+                <label class="control-label">用户名:</label>
+              </td>
+              <td width="240px" style="text-align: right;padding-right: 40px">
+                <input type="text" id="username" name="username" class="form-control"/>
+              </td>
+              <td style="text-align: right;min-width: 80px;">
+                <button type="button"class="btn btn-outline-secondary" id="f_find" style="vertical-align: middle;">查询</button>
+                <button type="button" class="btn btn-outline-secondary" id="del" style="vertical-align: middle;">删除</button>
+                <button type="reset"class="btn btn-outline-secondary" style="vertical-align: middle;">清空</button>
+              </td>
+            </tr>
+          </table>
+
+        </form>
+
+        <!--数据显示-->
+        <div class="ibox">
+          <div class="jqGrid_wrapper" >
+            <table id="jgTable" class="jgTable">
+            </table>
+            <div id="jgPagerList" style=""></div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+</div>
+
+
+<!--<script th:src="@{/js/bootstrap.bundle.min.js}"></script>-->
+
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
+</script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+
+<!--<link rel="stylesheet" th:href="@{/plugin/bootstrap/css/bootstrap.min.css}">-->
+<link rel="stylesheet" th:href="@{/plugin/Font-Awesome-4.5.0/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/ionicons-2.0.1/css/ionicons.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/SweetAlert2/css/sweetalert2.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-table/dist/bootstrap-table.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-select/css/bootstrap-select.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/zTree_v3/css/metroStyle/metroStyle.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-datepicker/css/bootstrap-datepicker.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/select2/dist/css/select2.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/bootstrap-fileinput/css/fileinput.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/style.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/all.css}">
+<link rel="stylesheet" th:href="@{/plugin/jQuery-Validation-Engine/css/validationEngine.jquery.min.css}">
+<link rel="stylesheet" th:href="@{/plugin/jqgrid/css/ui.jqgrid.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/common.css}">
+<link rel="stylesheet" th:href="@{/plugin/setup/css/index.css}">
+
+<script th:src="@{/plugin/jQuery/jquery-2.2.3.min.js}"></script>
+
+<script th:src="@{/plugin/jQuery/jquery.fillform.js}"></script>
+<script th:src="@{/plugin/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/plugin/json/jquery.json.min.js}"></script>
+<script th:src="@{/plugin/zTree_v3/js/jquery.ztree.all.min.js}"></script>
+<script th:src="@{/plugin/zTree_v3/js/dropDownTree-1.0.js}"></script>
+<script th:src="@{/plugin/SweetAlert2/js/sweetalert2.js}"></script>
+<script th:src="@{/plugin/SweetAlert2/js/promise-0.1.1.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-table/dist/bootstrap-table.js}"></script>
+<script th:src="@{/plugin/bootstrap-table/dist/bootstrap-table-zh-CN.js}"></script>
+<script th:src="@{/plugin/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-datepicker/js/bootstrap-datepicker.zh-CN.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js}"></script>
+<script th:src="@{/plugin/select2/dist/js/select2.min.js}"></script>
+<script th:src="@{/plugin/select2/dist/js/zh-CN.js}"></script>
+<script th:src="@{/plugin/bootstrap-select/js/bootstrap-select.js}"></script>
+<script th:src="@{/plugin/bootstrap-fileinput/js/fileinput.min.js}"></script>
+<script th:src="@{/plugin/bootstrap-fileinput/js/zh.js}"></script>
+<script th:src="@{/plugin/Multipage/js/Multipage.min.js}" ></script>
+<script th:src="@{/plugin/setup/js/lib.js}"></script>
+<script th:src="@{/plugin/jQuery-Validation-Engine/js/jquery.validationEngine.min.js}"></script>
+<script th:src="@{/plugin/jQuery-Validation-Engine/js/jquery.validationEngine-zh_CN.js}"></script>
+<script th:src="@{/plugin/jqgrid/i18n/grid.locale-cn.js}"></script>
+<script th:src="@{/plugin/jqgrid/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/plugin/loading/PerfectLoad.js}" ></script>
+<script th:src="@{/js/jquery.validate.min.js}" ></script>
+<script th:src="@{/js/messages_zh.js}" ></script>
+<!--<script th:src="@{/js/bootstrap-treeview.min.js}" ></script>-->
+<script th:src="@{/js/ajaxfileupload.js}" ></script>
+<script th:src="@{/js/echarts.min.js}"></script>
+
+
+
+<script type="text/javascript">
+  //新增——编辑 的判断条件
+  var jgGrid;
+  function mainDemo() {
+    $.jgrid.defaults.styleUI = "Bootstrap";
+    //行政区划初始化
+    //列表初始化
+    jgGrid = $("#jgTable").jqGrid({
+      url: "/web/User/toSelectUser",
+      datatype: "json",
+      height: $(document).height() * 0.64,
+      autowidth: true,  //根据数据自动调整表格宽度
+      shrinkToFit: true,  //根据数据自动调整表格列宽。
+      autoScroll: true,	// 自动滚动
+      multiselect: true,	//是否可以多选
+      postData: {
+        params: {
+          username: $("#username").val(),
+        }
+      },
+      rowNum: 150, rowList: [10, 20, 30, 50, 100],
+      colNames: ["用户ID", "用户名", "密码", "登录次数", "权限等级"],
+      colModel: [
+        {name: "uuid", index: "uuid", editable: true,width: 65,  sortable: false},
+        {name: "username", index: "username", editable: true, width: 55,  sortable: false},
+        {name: "password", index: "password", editable: true, width: 55,  sortable: false},
+        {name: "version", index: "version", editable: true, width: 45,  sortable: false},
+        {name: "uerstype", index: "uerstype", editable: true, width: 55,  sortable: false}
+      ],
+      gridComplete: function(){
+        $("#jgTable").setGridWidth($(window).width()*0.55);
+        $(window).resize(function(){
+          $("#jgTable").setGridWidth($(window).width()*0.55);
+        });
+      },
+      beforeSelectRow: function() {
+        $(this).jqGrid('resetSelection');
+        return true;
+      },
+    });
+
+    //组合查询确认
+  }
+  $(function () {
+    mainDemo();
+  });
+
+
+  $("#f_find").click(function () {
+    var queryParams = jgGrid.getGridParam(); //先取得 datagrid 的查询参数
+    queryParams["postData"].params = $("#querytable").formobj();
+    jgGrid.setGridParam(queryParams);
+    jgGrid.trigger("reloadGrid");
+  });
+
+  $("#del").click(function () {
+    //取选中记录
+    var rowid = jgGrid.getGridParam("selarrrow");
+    if (rowid == null || rowid.length == 0 ||rowid.length > 1) {
+      swal({title: "请选择一条记录", text: ""});
+      return;
+    }
+    var rowData = jgGrid.getRowData(rowid);
+    var uuid = rowData.uuid;
+
+    swal({
+      title: "您确定要删除选中记录吗？",
+      text: "",
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      confirmButtonText: "删除",
+      confirmButtonColor: "#3c8dbc"
+    }).then(function () {
+      // parent._startLoading("正在处理数据，请稍候...");//等待窗口
+      $.ajax({
+        url: "/web/User/todeleteUser?uuid=" + uuid,
+        dataType: "json",
+        cache: false,//禁止缓存
+        async: false,//同步提交
+        success: function (ret) {
+          if (ret == 1) {//返回成功
+            // parent._endLoading();//关闭等待窗口
+            swal("删除成功！", "", "success");
+            jgGrid.trigger("reloadGrid");
+          } else {
+            parent._endLoading();//关闭等待窗口
+            swal("删除失败！", "", "error");
+          }
+        },
+        error: function (data, status, e) { //服务器响应失败时的处理函数
+          parent._endLoading();//关闭等待窗口
+          swal("出错了", "", "error");
+        }
+      });
+    });
+  });
+
+  //时间日期控件
+  $("#dateTime").datepicker({
+    language: "zh-CN",
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    startView: 'days',
+    minViewMode: 'days'
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+.pmlist{
+    width: 400px;
+    height: 380px;
+    border: 1px solid #c1c5c9;
+    background: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 2px 12px 0 #c1c5c9;
+    border-radius: 6px;
+    margin-left: 6px;
+    margin-top: 10px;
+}
+.problem {
+    width: 400px;
+    height: 50px;
+    border-bottom: 1px solid #c1c5c9;
+    line-height: 50px;
+}
+#wtpmfx{
+    width: 400px;
+    height: 330px;
+}
+.middle{
+    margin-top: 10px;
+    width: 1000px;
+    height: 380px;
+    border: 1px solid #c1c5c9;
+    background: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 2px 12px 0 #c1c5c9;
+    border-radius: 6px;
+    margin-left: 415px;
+    float: left;
+    margin-top: -380px;
+}
+.middle_low{
+    width: 1000px;
+    height: 50px;
+    border-bottom: 1px solid #c1c5c9;
+    line-height: 50px;
+}
+#zdfzbfx{
+    width: 1000px;
+    height: 330px;
+}
+.end{
+    width: 1413px;
+    height: 280px;
+    border: 1px solid #c1c5c9;
+    background: rgba(255, 255, 255, 0.99);
+    box-shadow: 0 2px 12px 0 #c1c5c9;
+    margin-top: 10px;
+    border-radius: 6px;
+    margin-left: 6px;
+}
+.city{
+    width: 1413px;
+    height: 50px;
+    border-bottom: 1px solid #c1c5c9;
+    line-height: 50px;
+
+}
+#csdbfx{
+    width: 1413px;
+    height: 230px;
+}
