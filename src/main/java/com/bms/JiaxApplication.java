@@ -3,7 +3,7 @@ package com.bms;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
-//test2
+//test3
 @SpringBootApplication
 @EnableScheduling
 public class JiaxApplication {
