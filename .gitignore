@@ -1,7 +1,6 @@
-*.css linguist-vendored
-*.scss linguist-vendored
-*.js linguist-vendored
-
+src/main/resources/*.js linguist-vendored
+src/main/resources/*.html linguist-vendored
+src/main/resources/*.css linguist-vendored
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
