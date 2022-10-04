@@ -30,4 +30,5 @@ build/
 ### VS Code ###
 .vscode/
 
-static/* linguist-vendored
+
+resources/* linguist-vendored
