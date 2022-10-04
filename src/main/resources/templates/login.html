@@ -68,6 +68,10 @@
                     <h2 class="h2" style="color:#101010;font-family:'Times New Roman'" >温度仪表盘</h2>
                     <div id="main4" style="width: 320px;height:280px;"></div>
                 </div>
+                <div class="left-jkcx" >
+                    <h2 class="h2" style="color:#101010;font-family:'Times New Roman'" >电机仪表盘</h2>
+                    <div id="main6" style="width: 320px;height:280px;"></div>
+                </div>
             </div>
             <br>
             <h2 class="h2" style="color:#101010; width:148px; line-height:55px;text-align:left;font-family:'Times New Roman'" >控制开关</h2>
@@ -469,6 +473,32 @@
             });
         }, 2000000);
 
+
+        var option5 = {
+            tooltip: {
+                formatter: '{a} <br/>{b} : {c}%'
+            },
+            series: [
+                {
+                    name: 'Pressure',
+                    type: 'gauge',
+                    progress: {
+                        show: true
+                    },
+                    detail: {
+                        valueAnimation: true,
+                        formatter: '{value}'
+                    },
+                    data: [
+                        {
+                            date:[],
+                            name: 'rpm'
+                        }
+                    ]
+                }
+            ]
+        };
+
         var chartDom1 = document.getElementById('main2');
         var myChart1 = echarts.init(chartDom1);
 
@@ -481,8 +511,8 @@
         var chartDom3 = document.getElementById('main5');  //历史统计图
         var myChart3 = echarts.init(chartDom3);
 
-
-
+        var chartDom4 = document.getElementById('main6');
+        var myChart4 = echarts.init(chartDom4);
 
         fetch("/web/Bms/toSelectBms").then(response =>response.json()).then(res=>{console.log(res)
                 const date= res.map(v=>v.dateTime);
@@ -532,6 +562,15 @@
             option4.series[0].data=electricQuantity
 
             myChart3.setOption(option4);
+
+            }
+        )
+
+        fetch("/web/Bms/toSelectLastRpm").then(response =>response.json()).then(res=>{console.log(res)
+
+                const rpm= res.map(v=>v.rpm);
+                option5.series[0].data=rpm
+                myChart4.setOption(option5);
 
             }
         )

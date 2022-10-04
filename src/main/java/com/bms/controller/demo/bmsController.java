@@ -2,9 +2,8 @@ package com.bms.controller.demo;
 
 import com.bms.pojo.BicycleMainProperties;
 import com.bms.pojo.BmsProperties;
-import com.bms.pojo.register;
+import com.bms.pojo.ElectricMachineryProperties;
 import com.bms.service.bms.bmsService;
-import com.bms.service.login.loginService;
 import com.bms.util.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,4 +88,10 @@ public class bmsController {
         return i;
     }
 
+    @RequestMapping("/toSelectLastRpm")
+    @ResponseBody
+    public List<ElectricMachineryProperties> toSelectLastRpm(Page<BmsProperties> page , HttpServletRequest request) {
+        List<ElectricMachineryProperties> i = bmsService.getRpm(page, request);
+        return i;
+    }
 }

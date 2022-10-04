@@ -43,6 +43,7 @@ public class EmqClient {
         subscribe("Device2",QosEnum.Qos0);
         subscribe("Device3",QosEnum.Qos0);
         subscribe("Device4",QosEnum.Qos0);
+        subscribe("Device5",QosEnum.Qos0);
 
     }
 

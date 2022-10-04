@@ -2,7 +2,6 @@ package com.bms.config.client;
 
 import com.alibaba.fastjson.JSON;
 import com.bms.service.Mqtt.AsyncService;
-import com.bms.service.MqttService;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -59,27 +58,34 @@ public class MessageCallback implements MqttCallback {
                 message.getPayload()
 
         );
+        //返回数据
         if(topic.equals("Device1")) {
             String bmsmsg= new String(message.getPayload());
             Map maps = (Map) JSON.parse(bmsmsg);
             if(maps.get("Temperature")!=null && maps.get("ElectricQuantity")!=null) {
-               bmsMessage.toBms2(message);
+               bmsMessage.toBms1(message);
             }
         }
+        //历史数据
         if(topic.equals("Device2")) {
             String bmsmsg = new String(message.getPayload());
             Map maps = (Map) JSON.parse(bmsmsg);
             if (maps.get("Temperature") != null && maps.get("ElectricQuantity") != null) {
-                bmsMessage.toBms3(message);
+                bmsMessage.toBms2(message);
             }
         }
         //时间返回
         if(topic.equals("Device3")){
             asyncService.executeAsync();
         }
-//RfidMessage
+        //返回RfidMessage
         if(topic.equals("Device4")){
             bmsMessage.toBms4(message);
+
+        }
+        //返回电机信息
+        if(topic.equals("Device5")){
+            bmsMessage.toBms5(message);
 
         }
 

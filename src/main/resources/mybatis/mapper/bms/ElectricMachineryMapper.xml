@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bms.mapper.bms.BmsMapper">
+
+    <insert id="insertRpm" parameterType="com.bms.pojo.ElectricMachineryProperties">
+        insert into ebick.electricmachinery (ElectricMachineryId,BicycleId,rpm,dateTime)
+        values(#{ElectricMachineryId,jdbcType=VARCHAR},#{BicycleId,jdbcType=VARCHAR},
+               #{rpm,jdbcType=VARCHAR},#{dateTime,jdbcType=VARCHAR})
+    </insert>
+
+
+
+    <select id="getRpm" resultType="com.bms.pojo.ElectricMachineryProperties" parameterType="java.lang.String">
+        select ElectricMachineryId,BicycleId,rpm,dateTime from ebick.electricmachinery
+        WHERE dateTime IN
+        (select max(dateTime)
+        from ebick.electricmachinery
+        )
+
+
+        <if test="ElectricMachineryId != null and ElectricMachineryId !='' ">
+            and ElectricMachineryId LIKE CONCAT('%',#{ElectricMachineryId},'%')
+        </if>
+        <if test="BicycleId != null and BicycleId !='' ">
+            and BicycleId LIKE CONCAT('%',#{BicycleId},'%')
+        </if>
+    </select>
+
+</mapper>
+

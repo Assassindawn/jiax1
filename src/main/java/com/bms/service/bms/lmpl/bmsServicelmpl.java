@@ -3,10 +3,9 @@ package com.bms.service.bms.lmpl;
 import com.bms.mapper.bms.BmsMapper;
 import com.bms.pojo.BicycleMainProperties;
 import com.bms.pojo.BmsProperties;
-import com.bms.pojo.register;
+import com.bms.pojo.ElectricMachineryProperties;
 import com.bms.service.bms.bmsService;
 import com.bms.util.Page;
-import com.bms.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +17,12 @@ import java.util.Map;
 
 @Service
 public class bmsServicelmpl implements bmsService {
-    private static String  nowdate="yyyyMMddHHmmss";
+    private static final String  nowdate="yyyyMMddHHmmss";
 
     @Autowired
     private BmsMapper bmsMapper;
     @Override
-    public int innterHistoryData(Map map) {
+    public int interHistoryData(Map map) {
         BicycleMainProperties bicycleMainProperties= getRfidCard().get(0);
         BmsProperties bmsProperties= BmsProperties.builder()
                 .BicycleId(bicycleMainProperties.getBicycleId())
@@ -48,11 +47,10 @@ public class bmsServicelmpl implements bmsService {
     }
 
     @Override
-    public int innterData3(Map map) {
+    public void interData(Map map) {
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(nowdate);//可以方便地修改日期格式
         String Str = dateFormat.format(now);
-        System.out.println(Str);
         BicycleMainProperties bicycleMainProperties= getRfidCard().get(0);
         BmsProperties bmsProperties= BmsProperties.builder()
                 .BicycleId(bicycleMainProperties.getBicycleId())
@@ -62,11 +60,28 @@ public class bmsServicelmpl implements bmsService {
                 .dateTime(Str)
                 .build();
 
-        int i=bmsMapper.insertBms(bmsProperties);
+        bmsMapper.insertBms(bmsProperties);
 
-
-        return i;
     }
+//s
+    @Override
+    public void interRpm(Map map) {
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(nowdate);//可以方便地修改日期格式
+        String Str = dateFormat.format(now);
+        BicycleMainProperties bicycleMainProperties= getRfidCard().get(0);
+        ElectricMachineryProperties electricMachineryProperties= ElectricMachineryProperties.builder()
+                .ElectricMachineryId("1")
+                .BicycleId(bicycleMainProperties.getBicycleId())
+                .rpm(map.get("rpm").toString())
+                .dateTime(Str)
+                .build();
+
+        bmsMapper.insertRpm(electricMachineryProperties);
+
+    }
+
+
 
     @Override
     public List<BmsProperties> getAllBms(Page<BmsProperties> page, HttpServletRequest request) {
@@ -136,6 +151,14 @@ public class bmsServicelmpl implements bmsService {
         List<BicycleMainProperties> i = bmsMapper.getRfidCard();
         return i;
     }
+    @Override
+    public List<ElectricMachineryProperties> getRpm(Page<BmsProperties> page, HttpServletRequest request) {
+
+
+        List<ElectricMachineryProperties> i = bmsMapper.getRpm();
+        return i;
+    }
+
 
 
 }
