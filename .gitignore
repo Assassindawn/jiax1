@@ -1,6 +1,6 @@
-src/main/resources/*.js linguist-vendored
-src/main/resources/*.html linguist-vendored
-src/main/resources/*.css linguist-vendored
+*.html  linguist-detectable=false
+*.css  linguist-detectable=false
+*.js  linguist-detectable=false
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
