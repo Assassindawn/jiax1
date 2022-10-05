@@ -61,6 +61,24 @@ private bmsService bmsService;
 
         return true;
     }
+    //电机信息
+    public  boolean toBms6(MqttMessage message)  throws IOException {
+
+        String bmsmsg= new String(message.getPayload());
+        Map maps = (Map)JSON.parse(bmsmsg);
+        bmsService.interUp(maps);
+
+        return true;
+    }
+    //电机信息
+    public  boolean toBms7(MqttMessage message)  throws IOException {
+
+        String bmsmsg= new String(message.getPayload());
+        Map maps = (Map)JSON.parse(bmsmsg);
+        bmsService.interDown(maps);
+
+        return true;
+    }
 
 
 

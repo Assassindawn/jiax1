@@ -39,11 +39,13 @@ public class EmqClient {
          log.error("客户端初始化失败");
      }
         connect(mqttProperties.getUsername(),mqttProperties.getPassword());
-        subscribe("Device1",QosEnum.Qos0);
+        //subscribe("Device1",QosEnum.Qos0);
         subscribe("Device2",QosEnum.Qos0);
         subscribe("Device3",QosEnum.Qos0);
         subscribe("Device4",QosEnum.Qos0);
-        subscribe("Device5",QosEnum.Qos0);
+        subscribe("device7",QosEnum.Qos0);
+        subscribe("$SYS/brokers/emqx@127.0.0.1/clients/ADMIN1/connected",QosEnum.Qos0);
+        subscribe("$SYS/brokers/emqx@127.0.0.1/clients/ADMIN1/disconnected",QosEnum.Qos0);
 
     }
 

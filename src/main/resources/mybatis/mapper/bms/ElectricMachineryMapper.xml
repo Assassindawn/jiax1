@@ -11,7 +11,22 @@
                #{rpm,jdbcType=VARCHAR},#{dateTime,jdbcType=VARCHAR})
     </insert>
 
+    <insert id="insertEmq" parameterType="com.bms.pojo.EmqClientProperties">
+        insert into ebick.emqclient (ClientId,dateTime,State)
+        values(#{ClientId,jdbcType=VARCHAR},#{dateTime,jdbcType=VARCHAR},
+            #{State,jdbcType=VARCHAR,jdbcType=VARCHAR})
+    </insert>
 
+    <select id="getAllEmq" resultType="com.bms.pojo.EmqClientProperties" parameterType="java.lang.String">
+        select ClientId,State,dateTime from ebick.emqclient
+
+        <if test="ClientId != null and ClientId !='' ">
+            and ClientId LIKE CONCAT('%',#{ClientId},'%')
+        </if>
+        <if test="dateTime != null and dateTime !='' ">
+            and dateTime LIKE CONCAT('%',#{dateTime},'%')
+        </if>
+    </select>
 
     <select id="getRpm" resultType="com.bms.pojo.ElectricMachineryProperties" parameterType="java.lang.String">
         select ElectricMachineryId,BicycleId,rpm,dateTime from ebick.electricmachinery

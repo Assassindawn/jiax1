@@ -4,6 +4,7 @@ import com.bms.mapper.bms.BmsMapper;
 import com.bms.pojo.BicycleMainProperties;
 import com.bms.pojo.BmsProperties;
 import com.bms.pojo.ElectricMachineryProperties;
+import com.bms.pojo.EmqClientProperties;
 import com.bms.service.bms.bmsService;
 import com.bms.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,32 @@ public class bmsServicelmpl implements bmsService {
 
     }
 
+    @Override
+    public void interUp(Map map){
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(nowdate);//可以方便地修改日期格式
+        String Str = dateFormat.format(now);
+        EmqClientProperties emqClientProperties=EmqClientProperties.builder()
+                .ClientId(map.get("clientid").toString())
+                .State("online")
+                .dateTime(Str)
+                .build();
+       bmsMapper.insertEmq(emqClientProperties);
+    }
+
+    @Override
+    public void interDown(Map map){
+        Date now = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(nowdate);//可以方便地修改日期格式
+        String Str = dateFormat.format(now);
+        EmqClientProperties emqClientProperties=EmqClientProperties.builder()
+                .ClientId(map.get("clientid").toString())
+                .State("down")
+                .dateTime(Str)
+                .build();
+        bmsMapper.insertEmq(emqClientProperties);
+    }
+
 
 
     @Override
@@ -118,6 +145,14 @@ public class bmsServicelmpl implements bmsService {
         String BatteryId= (String) params.get("BatteryId");
         List<BicycleMainProperties> allBms = bmsMapper.getAllBms3(BicycleId,BatteryId);
         return allBms;
+    }
+    @Override
+    public List<EmqClientProperties> getAllEmq(Page<EmqClientProperties> page, HttpServletRequest request) {
+        Map<String, Object> params = page.getParams();
+        String ClientId= (String) params.get("ClientId");
+        String dateTime= (String) params.get("dateTime");
+        List<EmqClientProperties> allEmq = bmsMapper.getAllEmq(ClientId,dateTime);
+        return allEmq;
     }
 
     @Override

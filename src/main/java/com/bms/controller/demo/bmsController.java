@@ -3,6 +3,7 @@ package com.bms.controller.demo;
 import com.bms.pojo.BicycleMainProperties;
 import com.bms.pojo.BmsProperties;
 import com.bms.pojo.ElectricMachineryProperties;
+import com.bms.pojo.EmqClientProperties;
 import com.bms.service.bms.bmsService;
 import com.bms.util.Page;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,11 @@ public class bmsController {
     @RequestMapping("/toBms2")
     public String toBms2(HttpSession session) {
         return "/demo/BMS1";
+    }
+
+    @RequestMapping("/toEmq")
+    public String toEmq(HttpSession session) {
+        return "/demo/EmqClient";
     }
 
 //查询1机的数据
@@ -59,6 +65,15 @@ public class bmsController {
         List<BicycleMainProperties> allBms = bmsService.getAllBms3(page,request);
         return allBms;
     }
+
+
+    @RequestMapping("/toSelectEmq")
+    @ResponseBody
+    public List<EmqClientProperties> toSelectEmq(Page<EmqClientProperties> page , HttpServletRequest request){
+        List<EmqClientProperties> allEmq = bmsService.getAllEmq(page,request);
+        return allEmq;
+    }
+
 
 
     @RequestMapping("/toSelectLast")
@@ -94,4 +109,7 @@ public class bmsController {
         List<ElectricMachineryProperties> i = bmsService.getRpm(page, request);
         return i;
     }
+
+
+
 }

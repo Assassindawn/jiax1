@@ -35,4 +35,20 @@ public class AsyncServiceImpl implements AsyncService {
 
         log.info("end executeAsync");
     }
-}
+
+    //异步多线程调用
+    @Async("asyncServiceExecutor")
+    public void executeAsync2() {
+        log.info("start executeAsync");
+        try{
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        log.info("end executeAsync");
+    }
+
+
+
+    }
