@@ -28,7 +28,7 @@ public class bmsServicelmpl implements bmsService {
         BmsProperties bmsProperties= BmsProperties.builder()
                 .BicycleId(bicycleMainProperties.getBicycleId())
                 .Temperature(map.get("Temperature").toString())
-                .ElectricQuantity(map.get("ElectricQuantity").toString())
+                .ElectricQuantity("30")
                 .Light(map.get("Light").toString())
                 .dateTime(map.get("dateTime").toString())
                 .build();
@@ -56,7 +56,8 @@ public class bmsServicelmpl implements bmsService {
         BmsProperties bmsProperties= BmsProperties.builder()
                 .BicycleId(bicycleMainProperties.getBicycleId())
                 .Temperature(map.get("Temperature").toString())
-                .ElectricQuantity(map.get("ElectricQuantity").toString())
+               // .ElectricQuantity(map.get("ElectricQuantity").toString())
+                .ElectricQuantity("30")
                 .Light(map.get("Light").toString())
                 .dateTime(Str)
                 .build();
@@ -175,7 +176,11 @@ public class bmsServicelmpl implements bmsService {
 
     @Override
     public List<BmsProperties> getDataByTime(Page<BmsProperties> page, HttpServletRequest request) {
-        List<BmsProperties> i = bmsMapper.getDataByTime();
+        Map<String, Object> params = page.getParams();
+        String dateTime1= (String) params.get("dateTime1");
+        String dateTime2= (String) params.get("dateTime2");
+        List<BmsProperties> i = bmsMapper.getDataByTime(dateTime1,dateTime2);
+
         return i;
     }
 

@@ -12,9 +12,9 @@
     </insert>
 
     <insert id="insertEmq" parameterType="com.bms.pojo.EmqClientProperties">
-        insert into ebick.emqclient (ClientId,dateTime,State)
-        values(#{ClientId,jdbcType=VARCHAR},#{dateTime,jdbcType=VARCHAR},
-            #{State,jdbcType=VARCHAR,jdbcType=VARCHAR})
+        insert into ebick.emqclient (ClientId,State,dateTime)
+        values(#{ClientId,jdbcType=VARCHAR},#{State,jdbcType=VARCHAR},
+            #{dateTime,jdbcType=VARCHAR})
     </insert>
 
     <select id="getAllEmq" resultType="com.bms.pojo.EmqClientProperties" parameterType="java.lang.String">

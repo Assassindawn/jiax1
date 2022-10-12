@@ -61,7 +61,7 @@ private bmsService bmsService;
 
         return true;
     }
-    //电机信息
+    //上线
     public  boolean toBms6(MqttMessage message)  throws IOException {
 
         String bmsmsg= new String(message.getPayload());
@@ -70,7 +70,7 @@ private bmsService bmsService;
 
         return true;
     }
-    //电机信息
+    //信息
     public  boolean toBms7(MqttMessage message)  throws IOException {
 
         String bmsmsg= new String(message.getPayload());

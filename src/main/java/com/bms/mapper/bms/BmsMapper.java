@@ -31,7 +31,7 @@ public interface BmsMapper {
       List<BmsProperties> selectLast();
       List<BmsProperties> selectLast1();
       List<BmsProperties> selectLast2();
-      List<BmsProperties> getDataByTime();
+      List<BmsProperties> getDataByTime(@Param("dateTime1") String dateTime1, @Param("dateTime2") String dateTime2);
       List<BicycleMainProperties> getRfidCard();
       List<ElectricMachineryProperties> getRpm();
 

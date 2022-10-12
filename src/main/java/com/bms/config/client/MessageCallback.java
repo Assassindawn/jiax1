@@ -51,7 +51,6 @@ public class MessageCallback implements MqttCallback {
         String msg=new String(message.getPayload());
         Map maps = (Map) JSON.parse(msg);
         String theMsg = MessageFormat.format("{0}", msg);
-        String clientId=  maps.get("clientid").toString();
         log.info("订阅者订阅到了消息,topic={},messageid={},qos={},Payliad={}",
                 topic,
                 message.getId(),
@@ -62,23 +61,21 @@ public class MessageCallback implements MqttCallback {
 
         //返回数据
         if(topic.equals("Device1")) {
-
-            if(maps.get("Temperature")!=null && maps.get("ElectricQuantity")!=null) {
-               bmsMessage.toBms1(message);
+            try {
+                bmsMessage.toBms1(message);
+            }catch(Exception e){
+                e.printStackTrace();
             }
         }
 
 
         //历史数据
         if(topic.equals("Device2")) {
-
-            if (maps.get("Temperature") != null && maps.get("ElectricQuantity") != null) {
                 bmsMessage.toBms2(message);
-            }
         }
 
 
-        //时间返回
+       // 时间返回
         if(topic.equals("Device3")){
             asyncService.executeAsync();
         }
@@ -86,22 +83,32 @@ public class MessageCallback implements MqttCallback {
 
         //返回RfidMessage
         if(topic.equals("Device4")){
-            bmsMessage.toBms4(message);
+          //  bmsMessage.toBms4(message);
 
         }
 
 
         //返回电机信息
-        if(topic.equals("device7")){
+        if(topic.equals("Device7")){
             bmsMessage.toBms5(message);
 
         }
 
 
-        if (topic.endsWith("disconnected")) {
-            bmsMessage.toBms6(message);
+        if (topic.endsWith("$SYS/brokers/emqx@127.0.0.1/clients/ADMIN1/disconnected")) {
+                   String clientId=  maps.get("clientid").toString();
+
+            try{
+            bmsMessage.toBms6(message);}
+            catch (Exception e){
+                e.printStackTrace();
+            }
             log.info("客户端已掉线：{}",clientId);
-        } else {
+        }
+            if(topic.endsWith("$SYS/brokers/emqx@127.0.0.1/clients/ADMIN1/connected"))
+        {
+                    String clientId=  maps.get("clientid").toString();
+
             bmsMessage.toBms7(message);
             log.info("客户端已上线：{}",clientId);
         }

@@ -6,7 +6,7 @@
 <mapper namespace="com.bms.mapper.bms.BmsMapper">
 
     <update id="insertBms2" parameterType="com.bms.pojo.BicycleMainProperties">
-         UPDATE bicid SET BicycleId =#{BicycleId} where BicycleName='bick1'
+         UPDATE ebick.bicid SET BicycleId =#{BicycleId} where BicycleName='bick1'
     </update>
 
     <insert id="insertBms" parameterType="com.bms.pojo.BmsProperties">
@@ -20,7 +20,7 @@
 
     <select id="getAllBms" resultType="com.bms.pojo.BmsProperties" parameterType="java.lang.String">
         select BicycleId,Temperature,ElectricQuantity,Light,dateTime from ebick.bicmain
-        where BicycleId="7A80BCDE74FB"
+        where BicycleId='7A80BCDE74FB'
         ORDER BY dateTime
 
         <if test="BicycleId != null and BicycleId !='' ">
@@ -55,7 +55,7 @@
 
     <select id="queryAllBms" resultType="com.bms.pojo.BmsProperties" parameterType="java.lang.String">
         select BicycleId,Temperature,ElectricQuantity,Light  from ebick.bicmain
-        where 1=1
+
     </select>
 
     <select id="selectLast" resultType="com.bms.pojo.BmsProperties">
@@ -64,7 +64,7 @@
         WHERE dateTime IN
               (select max(dateTime)
                from ebick.bicmain
-              ) AND BicycleId="7A80BCDE74FB"
+              ) AND BicycleId='7A80BCDE74FB'
     </select>
 
     <select id="selectLast1" resultType="com.bms.pojo.BmsProperties">
@@ -80,11 +80,10 @@
         select ElectricQuantity from ebick.bicmain
         where BicycleId=2 and way=(select max(way) from ebick.bicmain)
     </select>
-
     <select id="getDataByTime" resultType="com.bms.pojo.BmsProperties" parameterType="java.lang.String">
-        SELECT Temperature,ElectricQuantity,Light,dateTime
+        SELECT BicycleId,Temperature,ElectricQuantity,Light,dateTime
         FROM ebick.bicmain
-        WHERE dateTime BETWEEN '2022-10-02 21:30:15' AND '2022-10-02 22:18:26'
+        WHERE dateTime BETWEEN CONCAT(#{dateTime1}) AND CONCAT(#{dateTime2})
     </select>
 
 </mapper>

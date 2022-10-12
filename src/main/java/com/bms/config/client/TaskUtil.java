@@ -31,7 +31,7 @@ public class TaskUtil {
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(nowdate);
         String Str = dateFormat.format(now);
-        emqClient.publish("Heartbeat", "live1:"+Str, QosEnum.Qos0, false);
+        emqClient.publish("Heartbeat", "live1:", QosEnum.Qos0, false);
 
     }
 

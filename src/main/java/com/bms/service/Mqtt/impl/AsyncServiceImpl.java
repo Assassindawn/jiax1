@@ -27,7 +27,7 @@ public class AsyncServiceImpl implements AsyncService {
             Date now = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat(nowdate);
             String Str = dateFormat.format(now);
-            emqClient.publish("keepAlive", "time:"+Str, QosEnum.Qos0, false);
+            emqClient.publish("keepAlive", "SetTime:"+Str, QosEnum.Qos0, false);
             log.info("设备已上线，返回时间");
         }catch (Exception e){
             e.printStackTrace();

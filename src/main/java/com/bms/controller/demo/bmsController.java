@@ -8,6 +8,7 @@ import com.bms.service.bms.bmsService;
 import com.bms.util.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -36,6 +37,13 @@ public class bmsController {
     public String toEmq(HttpSession session) {
         return "/demo/EmqClient";
     }
+
+    @RequestMapping("/toHistoryData")
+    public String toHistoryData(HttpSession session) {
+        return "/demo/HistoryData";
+    }
+
+
 
 //查询1机的数据
     @RequestMapping("/toSelectBms")
